@@ -4,7 +4,7 @@ import requests
 endpoint= "http://localhost:8000/api/products/"
 
 data = {
-    'title': "this field is done",
+    'title': "I jsut added this",
     'price': 3000
 }
 

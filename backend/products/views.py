@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import generics
+from rest_framework import generics,permissions, authentication
 from .models import Product
 from rest_framework.decorators import api_view
 from .serializers import ProductSerializer
@@ -10,6 +10,8 @@ from rest_framework.response import Response
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    authentication_classes = [authentication.SessionAuthentication]
+    permission_classes = [permissions.DjangoModelPermissions]
     #lookup_filed = 'pk
 
 
@@ -38,11 +40,13 @@ class ProductUpdateAPIView(generics.UpdateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     lookup_filed = 'pk'
+    permission_classes = [permissions.DjangoModelPermissions]
 
 
 class ProductDestroyAPIView(generics.DestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [permissions.DjangoModelPermissions]
     lookup_filed = 'pk'
 
     def perform_delete(self, instance):
