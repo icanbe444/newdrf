@@ -11,7 +11,7 @@ from .permissions import IsStaffEditorPermission
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    authentication_classes = [authentication.SessionAuthentication]
+    authentication_classes = [authentication.SessionAuthentication, authentication.TokenAuthentication]
     permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
     #lookup_filed = 'pk
 
